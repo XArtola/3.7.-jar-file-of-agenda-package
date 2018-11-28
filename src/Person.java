@@ -136,11 +136,11 @@ private int height = 0;
 		
 		if (dni.matches("")) {
 			
-			for(int i =0; i<7; i++) {
+
 				
-				this.dni= dni+Integer.toString(Math.random() * (9 - 0) + 0)
+				this.dni=Double.toString(Math.random() * (99999999 - 0) + 0) + ;
 				
-			}
+		
 			
 		}
 		
