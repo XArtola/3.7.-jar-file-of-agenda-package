@@ -147,8 +147,8 @@ public class Person {
 
 			Random r = new Random();
 
-			this.dni = Double.toString(Math.random() * (99999999 - 00000000) + 00000000)
-					+ alphabet.charAt(alphabet.charAt(r.nextInt(alphabet.length())));
+			this.dni = Integer.toString((int)Math.round(Math.random() * (99999999 - 00000000) + 00000000))
+					+ alphabet.charAt(r.nextInt(alphabet.length()-1));
 
 		}
 
