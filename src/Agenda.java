@@ -25,20 +25,27 @@ public class Agenda {
 		int cnt = 0;
 		int index = 0;
 
-		while (notFound) {
+		if (contacts.size() <= 1) {
 
-			if (contacts.get(cnt).getName().matches(toFind)) {
+			index = 0;
+			
+		}
 
-				index = cnt;
+		else {
+			while (notFound) {
 
-				notFound = false;
+				if (contacts.get(cnt).getName().matches(toFind)) {
+
+					index = cnt;
+
+					notFound = false;
+				}
+
+				cnt++;
 			}
+
 		}
 		return index;
-	}
-
-	public void setNUmber(String number) {
-
 	}
 
 	public void setContact(Person contact, String number, String address) {
@@ -51,7 +58,7 @@ public class Agenda {
 
 	public String getContact(String name) {
 
-		return contacts.get(findIndex(name)).toString() + "Number: " + numbers.get(findIndex(name)) + "Address: "
+		return contacts.get(findIndex(name)).toString() + " Number: " + numbers.get(findIndex(name)) + " Address: "
 				+ addresses.get(findIndex(name));
 
 	}
@@ -81,6 +88,8 @@ public class Agenda {
 	 */
 
 	public void modifyInfo(String contactName, String toModify, String newData) {
+		
+		toModify = toModify.trim();
 
 		switch (toModify) {
 
@@ -127,6 +136,12 @@ public class Agenda {
 			break;
 
 		}
+	}
+	
+	public int agendaSize() {
+		
+		return contacts.size();
+		
 	}
 
 }

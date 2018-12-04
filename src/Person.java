@@ -32,10 +32,10 @@ public class Person extends Agenda{
 		this.weight = weight;
 	}
 
-	public Person(int age, int weight, int height) {
+	public Person(String name) {
 
-		this.age = age;
-		this.weight = weight;
+		this.name = name;
+		
 
 	}
 
