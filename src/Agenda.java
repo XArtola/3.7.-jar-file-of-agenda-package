@@ -10,14 +10,9 @@ import java.util.ArrayList;
  */
 public class Agenda {
 
-	/**
-	 * @param args
-	 */
 
-	private ArrayList<Person> contacts = new ArrayList<Person>();
-	private ArrayList<String> numbers = new ArrayList<String>();
-	private ArrayList<String> addresses = new ArrayList<String>();
-
+	private ArrayList<Contact> contacts = new ArrayList<Contact>();
+	
 	private int findIndex(String toFind) {
 
 		boolean notFound = true;
@@ -25,16 +20,9 @@ public class Agenda {
 		int cnt = 0;
 		int index = 0;
 
-		if (contacts.size() <= 1) {
+			while ((notFound) && (cnt < contacts.size())) {
 
-			index = 0;
-			
-		}
-
-		else {
-			while (notFound) {
-
-				if (contacts.get(cnt).getName().matches(toFind)) {
+				if (contacts.get(cnt).getPerson().getName().matches(toFind)) {
 
 					index = cnt;
 
@@ -43,24 +31,72 @@ public class Agenda {
 
 				cnt++;
 			}
-
-		}
+			
+			if (notFound)
+				
+				index = -1;
+	
 		return index;
 	}
 
-	public void setContact(Person contact, String number, String address) {
+	public void setContacts(ArrayList<Contact> contacts) {
 
-		contacts.add(contact);
-		numbers.add(number);
-		addresses.add(address);
+		this.contacts = contacts;
 
 	}
+	
+	public ArrayList<Contact> getContacts() {
 
-	public String getContact(String name) {
+		return contacts;
 
-		return contacts.get(findIndex(name)).toString() + " Number: " + numbers.get(findIndex(name)) + " Address: "
-				+ addresses.get(findIndex(name));
+	}
+	
+	
+	/**@author ik013043z1
+	 * 
+	 * This method returns a specific contact of the agenda
+	 * 
+	 * @param index the index of the agenda
+	 * @return A Contact type object that matches with the entered name
+	 */
 
+	public Contact getContact(int index) {
+		
+		if(index < 0) {
+		 
+		return contacts.get(index);
+		
+		}
+
+	}
+	
+	/**@author ik013043z1
+	 * 
+	 * @param name
+	 * @return An int with the value of the index
+	 */
+	
+	
+	public int findContact(String name) {
+		
+		return findIndex(name);
+		
+	
+	}
+	
+	
+	/**@author ik013043z1
+	 * 
+	 * This method will add a new contact to the agenda
+	 * 
+	 * @param contact1 A Contact type object that will be added to the ArrayList
+	 */
+	
+	public void setContact(Contact contact1) {
+
+		
+		this.contacts.add(contact1);
+		
 	}
 
 	/**
@@ -72,8 +108,6 @@ public class Agenda {
 	public void deleteContact(String name) {
 
 		contacts.remove(findIndex(name));
-		numbers.remove(findIndex(name));
-		addresses.remove(findIndex(name));
 
 	}
 
@@ -87,6 +121,16 @@ public class Agenda {
 	 * @param newData     the new information the user wants to save
 	 */
 
+	
+	public void modifyContact(Contact _contact, int _index) {
+
+	}
+	
+	public void modifyContact(Contact _contact) {
+
+	}
+
+	/*
 	public void modifyInfo(String contactName, String toModify, String newData) {
 		
 		toModify = toModify.trim();
@@ -95,52 +139,68 @@ public class Agenda {
 
 		case "name":
 
-			contacts.get(findIndex(contactName)).setName(newData);
+			contacts.get(findIndex(contactName)).getPerson().setName(newData);
 			break;
 
 		case "age":
 
-			contacts.get(findIndex(contactName)).setAge(Integer.parseInt(newData));
+			contacts.get(findIndex(contactName)).getPerson().setAge(Integer.parseInt(newData));
 			break;
 
 		case "weight":
 
-			contacts.get(findIndex(contactName)).setWeight(Integer.parseInt(newData));
+			contacts.get(findIndex(contactName)).getPerson().setWeight(Integer.parseInt(newData));
 			break;
 
 		case "dni":
 
-			contacts.get(findIndex(contactName)).setDni(newData);
+			contacts.get(findIndex(contactName)).getPerson().setDni(newData);
 			break;
 
 		case "height":
 
-			contacts.get(findIndex(contactName)).setHeight(Integer.parseInt(newData));
-			;
+			contacts.get(findIndex(contactName)).getPerson().setHeight(Integer.parseInt(newData));
+			
 			break;
 
 		case "number":
 
-			int position = findIndex(contactName);
+			contacts.get(findIndex(contactName)).setNumber(newData);
 
-			numbers.remove(findIndex(contactName));
-			numbers.add(position, newData);
+			
 			break;
 
 		case "address":
 
-			int position2 = findIndex(contactName);
-
-			addresses.remove(findIndex(contactName));
-			addresses.add(position2, newData);
+			contacts.get(findIndex(contactName)).setAddress(newData);
+			
 			break;
 
 		}
 	}
+	*/
+	
+	/**@author ik013043z1
+	 * 
+	 * This method returns the number of contacts
+	 * 
+	 * @return An int  type variable, the number of contacts
+	 */
 	
 	public int agendaSize() {
 		
 		return contacts.size();
+		
+	}
+	
+	/**@author ik013043z1
+	 * 
+	 * This method will delete all the information stored in the ArrayList contacts
+	 */
+	
+	public void deleteAll() {
+		
+		contacts.clear();
 		
 	}
 

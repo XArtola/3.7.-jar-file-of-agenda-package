@@ -2,7 +2,7 @@
 /**
  * 
  */
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
 /**
@@ -30,7 +30,7 @@ public class Interface {
 			System.out.println("Hello, welcome to the digital agenda. This is what you are able to do:"
 					+ "\n\t 1- See an specific contact" + "\n\t 2- How many contacts do i have?"
 					+ "\n\t 3- Delete a contact" + "\n\t 4- Modify a contact" + "\n\t 5- Add a new contact"
-					+ "\n\t 6- Close the agenda" + "\n Choose an option by its number [1-6]");
+					 + "\n\t 6- Delete all the information" + "\n\t 7- Close the agenda"+ "\n Choose an option by its number [1-7]");
 
 			option = sc.nextInt();
 			sc.nextLine();
@@ -40,7 +40,7 @@ public class Interface {
 			case 1:
 
 				System.out.println("Enter the name of the contact you want to see:");
-				System.out.println(myAgenda.getContact(sc.next()));
+				System.out.println(myAgenda.getContact(sc.next()).contactToString());
 				break;
 
 			case 2:
@@ -86,18 +86,25 @@ public class Interface {
 
 				String[] collectedData = sc.nextLine().split(" ");
 				Person person1 = new Person(collectedData[0]);
+				Contact contact1 = new Contact ( person1, collectedData[1], collectedData[2]);
 				
-				myAgenda.setContact(person1, collectedData[1], collectedData[2]);
+				myAgenda.setContact(contact1);
+				break;
+				
+				
+			case 6:
+				
+				myAgenda.deleteAll();
 				break;
 
-			case 6:
+			case 7:
 
 				finish = true;
 				break;
 
 			default:
 
-				System.out.println("This is not a correct option please enter another one. [1-6]");
+				System.out.println("This is not a correct option please enter another one. [1-7]");
 
 				option = sc.nextInt();
 

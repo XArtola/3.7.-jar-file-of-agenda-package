@@ -8,7 +8,7 @@ import java.util.Random;
  * @author ik013043z1
  *
  */
-public class Person extends Agenda{
+public class Person{
 
 	private String name = "";
 	private int age = 0;
