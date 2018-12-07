@@ -3,6 +3,7 @@
  * 
  */
 
+import java.lang.module.FindException;
 import java.util.Scanner;
 
 /**
@@ -30,7 +31,8 @@ public class Interface {
 			System.out.println("Hello, welcome to the digital agenda. This is what you are able to do:"
 					+ "\n\t 1- See an specific contact" + "\n\t 2- How many contacts do i have?"
 					+ "\n\t 3- Delete a contact" + "\n\t 4- Modify a contact" + "\n\t 5- Add a new contact"
-					 + "\n\t 6- Delete all the information" + "\n\t 7- Close the agenda"+ "\n Choose an option by its number [1-7]");
+					+ "\n\t 6- Delete all the information" + "\n\t 7- Close the agenda"
+					+ "\n Choose an option by its number [1-7]");
 
 			option = sc.nextInt();
 			sc.nextLine();
@@ -40,12 +42,12 @@ public class Interface {
 			case 1:
 
 				System.out.println("Enter the name of the contact you want to see:");
-				System.out.println(myAgenda.getContact(sc.next()).contactToString());
+				System.out.println(myAgenda.getContact(myAgenda.findContact(sc.next())).contactToString());
 				break;
 
 			case 2:
 
-				System.out.println("You have " + myAgenda.agendaSize() + " contacts.\n");
+				System.out.println("You have " + myAgenda.size() + " contacts.\n");
 				break;
 
 			case 3:
@@ -73,10 +75,73 @@ public class Interface {
 
 			case 4:
 
-				System.out.println(
-						"Enter the name of the contact you want to modify, the specific value you want to cahnge and the new value: \n Ex. Xabier name Xabi");
-				myAgenda.modifyInfo(sc.next(), sc.next(), sc.next());
-				sc.nextLine();
+				System.out.println("Enter the name of the contact you want to modify");
+				Contact toModify = myAgenda.getContact(myAgenda.findContact(sc.next()));
+				System.out.println("What do you want to change?\n" + "1- Name\n" + "2- Age\n" + "3- Weight\n" + "4- DNI\n"
+						+ "5- Height\n" + "6- Number\n" + "7- Address\n");
+				String toModifyName = toModify.getPerson().getName();
+				switch (sc.nextInt()) {
+
+				case 1:
+
+					System.out.println("The Name of the contact is: " + toModify.getPerson().getName()
+							+ ". Please enter the new name:");
+					toModify.getPerson().setName(sc.next());
+					System.out.println("The new Name of the contact is: " + toModify.getPerson().getName() + ".");
+					break;
+
+				case 2:
+
+					System.out.println("The Age of the contact is: " + toModify.getPerson().getAge()
+							+ ". Please enter the new age:");
+					toModify.getPerson().setAge(sc.nextInt());
+					System.out.println("The new Name of the contact is: " + toModify.getPerson().getAge() + ".");
+					break;
+
+				case 3:
+
+					System.out.println("The Weight of the contact is: " + toModify.getPerson().getWeight()
+							+ ". Please enter the new weight:");
+					toModify.getPerson().setWeight(sc.nextInt());
+					System.out.println("The new Name of the contact is: " + toModify.getPerson().getWeight() + ".");
+					break;
+
+				case 4:
+
+					System.out.println("The DNI of the contact is: " + toModify.getPerson().getDni()
+							+ ". Please enter the new dni:");
+					toModify.getPerson().setDni(sc.next());
+					System.out.println("The new Name of the contact is: " + toModify.getPerson().getDni() + ".");
+					break;
+
+				case 5:
+
+					System.out.println("The DNI of the contact is: " + toModify.getPerson().getHeight()
+							+ ". Please enter the new height:");
+					toModify.getPerson().setHeight(sc.nextInt());
+					System.out.println("The new Name of the contact is: " + toModify.getPerson().getHeight() + ".");
+					break;
+
+				case 6:
+
+					System.out.println(
+							"The Number of the contact is: " + toModify.getNumber() + ". Please enter the new number:");
+					toModify.setNumber(sc.next());
+					System.out.println("The new Name of the contact is: " + toModify.getNumber() + ".");
+					break;
+
+				case 7:
+
+					System.out.println("The Address of the contact is: " + toModify.getAddress()
+							+ ". Please enter the new address:");
+					toModify.setAddress(sc.next());
+					System.out.println("The new Name of the contact is: " + toModify.getAddress() + ".");
+					break;
+
+				}
+				
+				myAgenda.modifyContact(toModify, myAgenda.findContact(toModifyName));
+				
 				break;
 
 			case 5:
@@ -86,14 +151,13 @@ public class Interface {
 
 				String[] collectedData = sc.nextLine().split(" ");
 				Person person1 = new Person(collectedData[0]);
-				Contact contact1 = new Contact ( person1, collectedData[1], collectedData[2]);
-				
-				myAgenda.setContact(contact1);
+				Contact contact1 = new Contact(person1, collectedData[1], collectedData[2]);
+
+				myAgenda.addContact(contact1);
 				break;
-				
-				
+
 			case 6:
-				
+
 				myAgenda.deleteAll();
 				break;
 

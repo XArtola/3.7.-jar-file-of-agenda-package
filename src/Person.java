@@ -76,7 +76,7 @@ public class Person{
 
 	}
 
-	public int getweight() {
+	public int getWeight() {
 
 		return weight;
 
