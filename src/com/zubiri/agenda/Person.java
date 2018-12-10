@@ -1,3 +1,4 @@
+package com.zubiri.agenda;
 import java.util.Random;
 
 /**
@@ -98,6 +99,10 @@ public class Person{
 
 	}
 
+	/**
+	 * 
+	 * @param height
+	 */
 	public void setHeight(int height) {
 
 		if (height > 30 && height < 220) {

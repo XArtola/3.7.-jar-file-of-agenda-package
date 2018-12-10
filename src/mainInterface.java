@@ -1,4 +1,3 @@
-
 /**
  * 
  */
@@ -6,11 +5,15 @@
 import java.lang.module.FindException;
 import java.util.Scanner;
 
+import com.zubiri.agenda.Agenda;
+import com.zubiri.agenda.Contact;
+import com.zubiri.agenda.Person;
+
 /**
  * @author ik013043z1
  *
  */
-public class Interface {
+public class mainInterface {
 
 	/**
 	 * @param args
@@ -76,10 +79,11 @@ public class Interface {
 			case 4:
 
 				System.out.println("Enter the name of the contact you want to modify");
-				Contact toModify = myAgenda.getContact(myAgenda.findContact(sc.next()));
+				String toModifyName = sc.next();
+				Contact toModify = myAgenda.getContact(myAgenda.findContact(toModifyName));
 				System.out.println("What do you want to change?\n" + "1- Name\n" + "2- Age\n" + "3- Weight\n" + "4- DNI\n"
 						+ "5- Height\n" + "6- Number\n" + "7- Address\n");
-				String toModifyName = toModify.getPerson().getName();
+				
 				switch (sc.nextInt()) {
 
 				case 1:

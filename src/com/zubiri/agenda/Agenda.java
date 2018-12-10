@@ -1,4 +1,4 @@
-
+package com.zubiri.agenda;
 /**
  * 
  */
@@ -100,16 +100,13 @@ public class Agenda {
 	 * @param contactName The name of the contact we want to modify
 	 */
 
-	public void modifyContact(Contact _contact, int _index) {
+	public void modifyContact(Contact contact, int index) {
 		
+		contacts.set(index, contact);
 		
 
 	}
 		
-		
-	public void modifyContact(Contact _contact) {
-
-	}
 	
 	/**@author ik013043z1
 	 * 
