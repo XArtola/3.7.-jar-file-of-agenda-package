@@ -1,14 +1,8 @@
 /**
  * 
  */
-
-import java.lang.module.FindException;
+import com.zubiri.agenda.*;
 import java.util.Scanner;
-
-import com.zubiri.agenda.Agenda;
-import com.zubiri.agenda.Contact;
-import com.zubiri.agenda.Person;
-
 /**
  * @author ik013043z1
  *
@@ -45,13 +39,14 @@ public class mainInterface {
 			case 1:
 
 				System.out.println("Enter the name of the contact you want to see:");
-				System.out.println(myAgenda.getContact(myAgenda.findContact(sc.next())).contactToString());
+				System.out.println(myAgenda.readContact(sc.next()));
 				break;
 
 			case 2:
 
-				System.out.println("You have " + myAgenda.size() + " contacts.\n");
+				System.out.println("You have " + myAgenda.getKontaktuak().size() + " contacts.\n");
 				break;
+				
 
 			case 3:
 
@@ -78,75 +73,11 @@ public class mainInterface {
 
 			case 4:
 
-				System.out.println("Enter the name of the contact you want to modify");
-				String toModifyName = sc.next();
-				Contact toModify = myAgenda.getContact(myAgenda.findContact(toModifyName));
-				System.out.println("What do you want to change?\n" + "1- Name\n" + "2- Age\n" + "3- Weight\n" + "4- DNI\n"
-						+ "5- Height\n" + "6- Number\n" + "7- Address\n");
-				
-				switch (sc.nextInt()) {
-
-				case 1:
-
-					System.out.println("The Name of the contact is: " + toModify.getPerson().getName()
-							+ ". Please enter the new name:");
-					toModify.getPerson().setName(sc.next());
-					System.out.println("The new Name of the contact is: " + toModify.getPerson().getName() + ".");
-					break;
-
-				case 2:
-
-					System.out.println("The Age of the contact is: " + toModify.getPerson().getAge()
-							+ ". Please enter the new age:");
-					toModify.getPerson().setAge(sc.nextInt());
-					System.out.println("The new Name of the contact is: " + toModify.getPerson().getAge() + ".");
-					break;
-
-				case 3:
-
-					System.out.println("The Weight of the contact is: " + toModify.getPerson().getWeight()
-							+ ". Please enter the new weight:");
-					toModify.getPerson().setWeight(sc.nextInt());
-					System.out.println("The new Name of the contact is: " + toModify.getPerson().getWeight() + ".");
-					break;
-
-				case 4:
-
-					System.out.println("The DNI of the contact is: " + toModify.getPerson().getDni()
-							+ ". Please enter the new dni:");
-					toModify.getPerson().setDni(sc.next());
-					System.out.println("The new Name of the contact is: " + toModify.getPerson().getDni() + ".");
-					break;
-
-				case 5:
-
-					System.out.println("The DNI of the contact is: " + toModify.getPerson().getHeight()
-							+ ". Please enter the new height:");
-					toModify.getPerson().setHeight(sc.nextInt());
-					System.out.println("The new Name of the contact is: " + toModify.getPerson().getHeight() + ".");
-					break;
-
-				case 6:
-
-					System.out.println(
-							"The Number of the contact is: " + toModify.getNumber() + ". Please enter the new number:");
-					toModify.setNumber(sc.next());
-					System.out.println("The new Name of the contact is: " + toModify.getNumber() + ".");
-					break;
-
-				case 7:
-
-					System.out.println("The Address of the contact is: " + toModify.getAddress()
-							+ ". Please enter the new address:");
-					toModify.setAddress(sc.next());
-					System.out.println("The new Name of the contact is: " + toModify.getAddress() + ".");
-					break;
-
-				}
-				
-				myAgenda.modifyContact(toModify, myAgenda.findContact(toModifyName));
-				
-				break;
+				 System.out.println("Enter the info you want to change in the next order contact name, variable of the contact you want to change, new value"
+				 		+ "\n Ex: Xabier dni 99999999");
+				 myAgenda.modifyContact(sc.next(), sc.next(), sc.next());
+				 break;
+				 
 
 			case 5:
 
@@ -155,15 +86,18 @@ public class mainInterface {
 
 				String[] collectedData = sc.nextLine().split(" ");
 				Person person1 = new Person(collectedData[0]);
-				Contact contact1 = new Contact(person1, collectedData[1], collectedData[2]);
+				Contact contact1 = new Contact(person1, Integer.parseInt(collectedData[1]), collectedData[2]);
 
 				myAgenda.addContact(contact1);
 				break;
 
 			case 6:
 
-				myAgenda.deleteAll();
+				//myAgenda.deleteAll();
 				break;
+				
+				//I don´t have a method to delete all clear the agenda
+				//I don´t have a method to delete contacts one by one
 
 			case 7:
 

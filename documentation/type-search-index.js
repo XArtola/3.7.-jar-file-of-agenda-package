@@ -1,1 +1,0 @@
-typeSearchIndex = [{"p":"com.zubiri.agenda","l":"Agenda"},{"p":"com.zubiri.agenda","l":"Contact"},{"p":"com.zubiri.agenda","l":"Person"}]
